@@ -3,7 +3,12 @@ namespace :passenger do
   task :restart do
     on roles(fetch(:passenger_roles)), in: fetch(:passenger_restart_runner), wait: fetch(:passenger_restart_wait), limit: fetch(:passenger_restart_limit) do
       with fetch(:passenger_environment_variables) do
-        passenger_version = capture(:passenger, '-v').match(/\APhusion Passenger version (.*)$/)[1].to_i
+        # 'passenger -v' may output one of the following depending on the version:
+        # Phusion Passenger version x.x.x
+        # Phusion Passenger Enterprise version x.x.x
+        # Phusion Passenger x.x.x
+        # Phusion Passenger Enterprise x.x.x
+        passenger_version = capture(:passenger, '-v').match(/^Phusion Passenger (Enterprise )?(version )?(.*)$/)[3]
 
         if passenger_version > 4
           restart_with_sudo = fetch(:passenger_restart_with_sudo) ? :sudo : nil

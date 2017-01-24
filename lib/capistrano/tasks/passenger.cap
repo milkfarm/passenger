@@ -8,7 +8,7 @@ namespace :passenger do
         # Phusion Passenger Enterprise version x.x.x
         # Phusion Passenger x.x.x
         # Phusion Passenger Enterprise x.x.x
-        passenger_version = capture(:passenger, '-v').match(/^Phusion Passenger (Enterprise )?(version )?(.*)$/)[3]
+        passenger_version = capture(:passenger, '-v').match(/^Phusion Passenger (Enterprise )?(version )?(.*)$/)[3].to_i
 
         if passenger_version > 4
           restart_with_sudo = fetch(:passenger_restart_with_sudo) ? :sudo : nil

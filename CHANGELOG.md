@@ -1,26 +1,3 @@
-# Not released yet
-* Made passenger-status use the same Command Map prefixes as passenger and passenger-config.
-  Even though it's not used in this project by default, it may be useful in some cases,
-  such as when someone needs to determine the passenger instance ID
-* Only run passenger commands from the release_path if passenger is in the Gemfile.
-  Otherwise, it may be in a gemset that conflicts with a .ruby-gemset file in release_path.
-
-# 0.2.0 (8 Dec 2015)
-* Added support for passenger versions > 5.0.20
-
-# 0.1.1 (30 June 2015)
-* Bug fixes:
-  * When detecting passenger version, we account for the fact the the version may not be on the first line of the captured output (@pzgz, capistrano/passenger#20)
-  * When executing the restart command without sudo, we make sure the first argument to execute is still a Symbol so that the command is executed in the appropriate directory (@FooBarWidget, capistrano/passenger#27)
-
-# 0.1.0 (3 June 2015)
-
-* BREAKING CHANGES
-  * On version of passenger that support both restarting by touch and restarting with passenger-config, the default is to use passenger-config.  set :passenger_restart_with_touch to true to opt out of this.
-* Bug fixes:
-  * Restored support for CHRuby (@aeons, capistrano/passenger#16)
-  * Restored support for passenger installed by bundle (@betesh, capistrano/passenger#10)
-
 # 0.0.5 (12 Apr 2015)
 
 * Bug fixes:

@@ -1,5 +1,5 @@
 module Capistrano
   module Passenger
-    VERSION = "0.2.0"
+    VERSION = "0.0.5"
   end
 end
